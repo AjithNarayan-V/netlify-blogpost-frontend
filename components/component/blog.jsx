@@ -1,5 +1,5 @@
 "use client";
-import BlogCard from '@/components/ui/BlogCard';
+import BlogCard from '../../components/ui/BlogCard';
 import { useEffect, useState } from 'react';
 
 // Helper function to check if an image URL is valid
