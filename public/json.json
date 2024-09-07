@@ -1,0 +1,18 @@
+[
+    {
+      "title": "Learning to Code",
+      "subtitle": "Opening a door to the future",
+      "author": "John Doe",
+      "date": "Aug. 24, 2015",
+      "tags": ["Learn", "Code", "HTML", "CSS"],
+      "image": "https://storage.googleapis.com/chydlx/codepen/blog-cards/image-1.jpg"
+    },
+    {
+      "title": "Mastering the Language",
+      "subtitle": "Java is not the same as JavaScript",
+      "author": "Jane Doe",
+      "date": "July. 15, 2015",
+      "tags": ["Learn", "Code", "JavaScript"],
+      "image": "https://storage.googleapis.com/chydlx/codepen/blog-cards/image-2.jpg"
+    }
+  ]
