@@ -1,6 +1,7 @@
 'use client'; // Required in app directory for client-side data fetching
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation'; // For app directory routing, if using pages directory use 'useRouter'
+import Image from 'next/image';
 
 const PostDetails = () => {
   const { id } = useParams(); // Get the post ID from the URL
@@ -25,7 +26,8 @@ const PostDetails = () => {
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Post Image */}
         <div className="relative">
-          <img
+          <Image width={400} // specify width
+            height={200}
             src={post.image || '/default-image-url.jpg'}
             alt={post.title}
             className="w-full h-96 object-cover"

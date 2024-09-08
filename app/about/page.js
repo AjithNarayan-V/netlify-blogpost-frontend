@@ -1,4 +1,5 @@
 'use client'; // Required in app directory for client-side data fetching
+import Image from 'next/image';
 
 const AboutUs = () => {
   return (
@@ -25,7 +26,8 @@ const AboutUs = () => {
       <div>
         <h2 className="text-2xl font-semibold mb-4">Meet the Creator</h2>
         <div className="bg-gray-100 p-4 rounded-lg shadow-md">
-          <img src="./ajith-narayan.jpg" alt="Ajith Narayan" className="w-1/2 h-90 object-cover rounded-md mb-4" />
+          <Image width={500} // specify width
+            height={500} src="./ajith-narayan.jpg" alt="Ajith Narayan" className="w-1/2 h-90 object-cover rounded-md mb-4" />
           <h3 className="text-xl font-semibold mb-2">Ajith Narayan</h3>
           <p className="text-gray-600">Founder & CEO    </p>
           <p className="text-gray-700 mt-2">

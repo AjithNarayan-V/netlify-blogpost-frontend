@@ -1,4 +1,6 @@
 {
-  "extends": ["next/babel","next/core-web-vitals"]
-  
+  "extends": ["next", "next/core-web-vitals"],
+  "rules": {
+    "@next/next/no-img-element": "off" // Disables the no-img-element rule
+  }
 }

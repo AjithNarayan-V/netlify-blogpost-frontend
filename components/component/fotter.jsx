@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from "next/link"
+import Image from 'next/image';
 
 const Footer = () => {
     return (
@@ -12,7 +13,8 @@ const Footer = () => {
                         <span className='text-green-600'>Post.com&gt;</span>
                     </div></a>. All Rights Reserved.
                     </span>
-                    <span className='flex text-gray-400'>Created with &nbsp; <img className='w-3 mt-1 justify-center' src="/heart.png" alt="love" />&nbsp; by Ajith Narayan</span>
+                    <span className='flex text-gray-400'>Created with &nbsp; <Image className='w-3 mt-1 justify-center' width={50} // specify width
+                        height={50} src="/heart.png" alt="love" />&nbsp; by Ajith Narayan</span>
                     <ul className="flex flex-wrap items-center mt-3 tex t-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
                         <li>
                             <Link href="/about" prefetch={false} className="hover:underline me-4 md:me-6">About</Link>

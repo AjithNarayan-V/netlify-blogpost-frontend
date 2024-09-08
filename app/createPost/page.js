@@ -1,8 +1,9 @@
 'use client'; // If you're using the app directory structure
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import React, { Suspense } from 'react';
 
-const CreatePost = () => {
+const CreatePostPage = () => {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [content, setContent] = useState('');
@@ -60,6 +61,7 @@ const CreatePost = () => {
   };
 
   return (
+
     <div className="max-w-2xl mx-auto mt-10">
       <h1 className="text-2xl font-bold mb-4">{isEdit ? 'Edit Post' : 'Create New Post'}</h1>
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -137,7 +139,14 @@ const CreatePost = () => {
         </button>
       </form>
     </div>
+
   );
 };
+
+const CreatePost = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <CreatePostPage />
+  </Suspense>
+);
 
 export default CreatePost;

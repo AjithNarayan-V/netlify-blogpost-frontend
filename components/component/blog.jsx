@@ -1,6 +1,8 @@
 "use client";
 import BlogCard from '@/components/ui/blogCard';
 import { useEffect, useState } from 'react';
+import NextImage from 'next/image';
+
 
 // Helper function to check if an image URL is valid
 const validateImageUrl = (url, fallback) => {

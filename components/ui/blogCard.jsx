@@ -15,6 +15,8 @@ const BlogCard = ({ id, title, subtitle, author,content, date, image, alt ,handl
       image: image,
     }).toString();
     router.push(`/createPost?${queryParams}`);
+    // router.push(`/createPost?id=${id}`);
+
   };
 
   // Handle deleting the post

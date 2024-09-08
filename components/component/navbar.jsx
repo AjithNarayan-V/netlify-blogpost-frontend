@@ -8,6 +8,7 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import Image from 'next/image';
 
 export function Navbar() {
   return (
@@ -95,7 +96,7 @@ export default Navbar;
 
  function MenuIcon(props) {
   return (
-    <img
+    <Image
       {...props}
       src="./menu.svg"
       alt="Menu Icon"
