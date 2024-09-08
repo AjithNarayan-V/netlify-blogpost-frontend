@@ -25,13 +25,13 @@ const PostDetails = () => {
     <div className="max-w-4xl mx-auto mt-10 p-4">
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Post Image */}
-        <div className="relative">
-          <Image width={400} // specify width
+        <div className="relative w-full h-96 inset-0 bg-cover bg-center object-cover" style={{ backgroundImage: `url(${post.image})` }}>
+          {/* <Image width={400} // specify width
             height={200}
             src={post.image || '/default-image-url.jpg'}
             alt={post.title}
             className="w-full h-96 object-cover"
-          />
+          /> */}
           <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
             <h1 className="text-white text-5xl font-bold drop-shadow-lg text-center">{post.title}</h1>
           </div>
