@@ -4,41 +4,27 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React, { Suspense } from 'react';
 
 const CreatePostPage = () => {
-  const [title, setTitle] = useState('');
-  const [subtitle, setSubtitle] = useState('');
-  const [content, setContent] = useState('');
-  const [author, setAuthor] = useState('');
-  const [image, setImage] = useState('');
   const [isEdit, setIsEdit] = useState(false);
-  const router = useRouter(); 
+  const [post, setPost] = useState([]);
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    // Check if we are editing an existing post
     const postId = searchParams.get('id');
     if (postId) {
       setIsEdit(true);  // We are in "edit" mode
-      // Pre-fill the form with the existing post data
-      setTitle(searchParams.get('title') || '');
-      setSubtitle(searchParams.get('subtitle') || '');
-      setContent(searchParams.get('content') || '');
-      setAuthor(searchParams.get('author') || '');
-      setImage(searchParams.get('image') || '');
+      const fetchPost = async () => {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/${postId}`);
+        const data = await res.json();
+        setPost(data);
+        console.log(data);
+      };
+      fetchPost();
     }
   }, [searchParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Prepare the data to send to the backend
-    const postData = {
-      title,
-      subtitle,
-      content,
-      author,
-      image,
-    };
-
     try {
       const postId = searchParams.get('id');
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/${isEdit ? postId : ''}`, {
@@ -46,7 +32,7 @@ const CreatePostPage = () => {
         headers: {  
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(postData),
+        body: JSON.stringify(post),
       });
 
       if (res.ok) {
@@ -72,8 +58,8 @@ const CreatePostPage = () => {
           <input
             id="title"
             type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            value={post.title}
+            onChange={(e) => setPost({ ...post, title: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
             required
           />
@@ -85,8 +71,8 @@ const CreatePostPage = () => {
           </label>
           <textarea
             id="subtitle"
-            value={subtitle}
-            onChange={(e) => setSubtitle(e.target.value)}
+            value={post.subtitle}
+            onChange={(e) => setPost({ ...post, subtitle: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
             required
           />
@@ -99,8 +85,8 @@ const CreatePostPage = () => {
           <input
             id="author"
             type="text"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
+            value={post.author}
+            onChange={(e) => setPost({ ...post, author: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
           />
         </div>
@@ -111,8 +97,8 @@ const CreatePostPage = () => {
           </label>
           <textarea
             id="content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
+            value={post.content}
+            onChange={(e) => setPost({ ...post, content: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
             required
           />
@@ -125,8 +111,8 @@ const CreatePostPage = () => {
           <input
             id="image"
             type="text"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            value={post.image}
+            onChange={(e) => setPost({ ...post, image: e.target.value })}
             className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"
           />
         </div>

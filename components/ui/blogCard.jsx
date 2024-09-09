@@ -8,11 +8,11 @@ const BlogCard = ({ id, title, subtitle, author,content, date, image, alt ,handl
   const handleEdit = () => {
     const queryParams = new URLSearchParams({
       id: id,
-      title: title,
-      subtitle: subtitle,
-      content: content,
-      author: author,
-      image: image,
+      // title: title,
+      // subtitle: subtitle,
+      // content: content,
+      // author: author,
+      // image: image,
     }).toString();
     router.push(`/createPost?${queryParams}`);
     // router.push(`/createPost?id=${id}`);
