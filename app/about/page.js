@@ -1,4 +1,4 @@
-'use client'; // Required in app directory for client-side data fetching
+  // Required in app directory for client-side data fetching
 import Image from 'next/image';
 
 const AboutUs = () => {
@@ -25,9 +25,9 @@ const AboutUs = () => {
       </div>
       <div>
         <h2 className="text-2xl font-semibold mb-4">Meet the Creator</h2>
-        <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+        <div className="flex flex-col items-center bg-gray-100 p-4 rounded-lg shadow-md ">
           <Image width={500} // specify width
-            height={500} src="./ajith-narayan.jpg" alt="Ajith Narayan" className="w-1/2 h-90 object-cover rounded-md mb-4" />
+            height={500} src="/ajith-narayan.jpg" alt="Ajith Narayan" className="w-1/2 h-90 object-cover rounded-md mb-4 items-center" />
           <h3 className="text-xl font-semibold mb-2">Ajith Narayan</h3>
           <p className="text-gray-600">Founder & CEO    </p>
           <p className="text-gray-700 mt-2">
@@ -36,9 +36,9 @@ const AboutUs = () => {
         </div>
       </div>
       <div>
-        <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
+        <h2 className="text-2xl font-semibold  mt-4 mb-4">Get in Touch</h2>
         <p className="text-gray-700 mb-4">
-          We love hearing from our readers and contributors! If you have any questions, suggestions, or just want to say hello, feel free to reach out to us at <a href="mailto:contact@blogpost.com" className="text-indigo-600 hover:underline">contact@blogpost.com</a>.
+          We love hearing from our readers and contributors! If you have any questions, suggestions, or just want to say hello, feel free to reach out to us at <a href="mailto:contact@blogpost.com" className="text-indigo-600 hover:underline">ajithnarayan004@gmail.com</a>.
         </p>
       </div>
     </div>

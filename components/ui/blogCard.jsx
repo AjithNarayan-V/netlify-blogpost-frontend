@@ -1,22 +1,18 @@
 "use client";
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
-const BlogCard = ({ id, title, subtitle, author,content, date, image, alt ,handleDeletePost }) => {
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+
+const BlogCard = ({ id, title, subtitle, author, content, date, image, alt }) => {
+  const [isDeleted, setIsDeleted] = useState(false); // Track if the post is deleted
   const router = useRouter();
+
   // Handle editing the post
   const handleEdit = () => {
     const queryParams = new URLSearchParams({
       id: id,
-      // title: title,
-      // subtitle: subtitle,
-      // content: content,
-      // author: author,
-      // image: image,
     }).toString();
     router.push(`/createPost?${queryParams}`);
-    // router.push(`/createPost?id=${id}`);
-
   };
 
   // Handle deleting the post
@@ -29,11 +25,10 @@ const BlogCard = ({ id, title, subtitle, author,content, date, image, alt ,handl
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/posts/${id}`, {
         method: 'DELETE',
       });
-      console.log("delete request")
 
       if (res.ok) {
-        handleDeletePost(id); // Call the parent delete handler to update the state
-      }else {
+        setIsDeleted(true); // Mark the post as deleted
+      } else {
         console.error('Failed to delete the post');
       }
     } catch (error) {
@@ -41,10 +36,12 @@ const BlogCard = ({ id, title, subtitle, author,content, date, image, alt ,handl
     }
   };
 
+  // Return null if the post is deleted (it will no longer be shown)
+  if (isDeleted) return null;
+
   return (
     <div
-      className={`w-3/4 flex items-start justify-center flex-col mb-6 shadow-lg rounded-lg overflow-hidden ${alt ? 'flex-row-reverse' : 'flex-row'}`}>
-      {/* Image with onClick handler for redirection */}
+      className={`sm:w-full lg:w-3/4 flex items-start justify-center flex-col mb-6 shadow-lg rounded-lg overflow-hidden ${alt ? 'flex-row-reverse' : 'flex-row'}`}>
       <div className="relative w-full h-56 cursor-pointer" onClick={() => router.push(`/posts/${id}`)}>
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${image})` }}></div>
         <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-4">
@@ -55,27 +52,21 @@ const BlogCard = ({ id, title, subtitle, author,content, date, image, alt ,handl
         </div>
       </div>
 
-      {/* Blog details */}
       <div className={"p-4 bg-white transition-all duration-300 ease-in-out h-50 overflow-hidden"}>
         <h1 className="text-2xl font-bold cursor-pointer" onClick={() => router.push(`/posts/${id}`)}>{title}</h1>
         <div className='flex justify-between'>
           <h2 className="text-gray-600 text-sm uppercase mt-1">{subtitle}</h2>
         </div>
 
-        {/* Edit and Delete Buttons */}
         <div className="mt-4 flex space-x-4">
           <button
-            onClick={() => {
-              handleEdit();  // Trigger the edit handler
-            }}
+            onClick={handleEdit}
             className="bg-yellow-500 text-white px-3 py-1 rounded-md hover:bg-yellow-600"
           >
             Edit
           </button>
           <button
-            onClick={() => {
-              handleDelete();  // Trigger the delete handler
-            }}
+            onClick={handleDelete}
             className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
           >
             Delete
